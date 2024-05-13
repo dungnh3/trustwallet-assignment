@@ -3,7 +3,7 @@ package repositories
 import (
 	"context"
 	"errors"
-	"github.com/dungnh3/trustwallet-assignment/models"
+	"github.com/dungnh3/trustwallet-assignment/internal/models"
 	"sync"
 )
 

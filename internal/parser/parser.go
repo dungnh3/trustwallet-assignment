@@ -4,10 +4,10 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/dungnh3/trustwallet-assignment/models"
-	"github.com/dungnh3/trustwallet-assignment/repositories"
+	"github.com/dungnh3/trustwallet-assignment/internal/models"
+	"github.com/dungnh3/trustwallet-assignment/internal/repositories"
+	"github.com/dungnh3/trustwallet-assignment/internal/utils"
 	"github.com/dungnh3/trustwallet-assignment/rest"
-	"github.com/dungnh3/trustwallet-assignment/utils"
 	"github.com/google/uuid"
 	"go.uber.org/zap"
 	"time"
@@ -29,7 +29,7 @@ type Invoker struct {
 	interval time.Duration
 }
 
-func New(ctx context.Context, host string, repo repositories.Repository) *Invoker {
+func New(ctx context.Context, host string, repo repositories.Repository) Parser {
 	cli := rest.New().Base(host)
 	logger, _ := zap.NewProduction()
 	return &Invoker{

@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/dungnh3/trustwallet-assignment/parser"
-	"github.com/dungnh3/trustwallet-assignment/repositories"
+	"github.com/dungnh3/trustwallet-assignment/internal/parser"
+	"github.com/dungnh3/trustwallet-assignment/internal/repositories"
 )
 
 func main() {
@@ -13,10 +13,14 @@ func main() {
 	repo := repositories.New()
 	invoker := parser.New(ctx, host, repo)
 
-	//currentBlock := invoker.GetCurrentBlock()
-	//fmt.Printf("Current block is: %d\n", currentBlock)
-
 	address := "0x12ebe0a"
-	transactions := invoker.Subscribe(address)
+
+	currentBlock := invoker.GetCurrentBlock()
+	fmt.Printf("Current block is: %d\n", currentBlock)
+
+	transactions := invoker.GetTransactions(address)
 	fmt.Println(transactions)
+
+	isSubscribed := invoker.Subscribe(address)
+	fmt.Println(isSubscribed)
 }
